@@ -1,38 +1,38 @@
-class Board(numbers: List<String>) {
+fun main() {
+    class Board(numbers: List<String>) {
 
-    private var numbers = numbers.map { it.toInt() to false }
+        private var numbers = numbers.map { it.toInt() to false }
 
-    fun mark(number: Int) {
-        numbers = numbers.map {
-            if (it.first == number) it.first to true
-            else it
-        }
-    }
-
-    fun checkWin(): Int {
-        val resultLine = numbers.chunked(5).map { line ->
-            line.all { it.second }
+        fun mark(number: Int) {
+            numbers = numbers.map {
+                if (it.first == number) it.first to true
+                else it
+            }
         }
 
-        if (resultLine.any { it }) {
-            return numbers.filter { !it.second }.sumOf { it.first }
-        }
-
-        for (j in 0..4) {
-            val toCheck = mutableListOf<Pair<Int, Boolean>>()
-            for (i in numbers.indices step 5) {
-                toCheck += numbers[i + j]
+        fun checkWin(): Int {
+            val resultLine = numbers.chunked(5).map { line ->
+                line.all { it.second }
             }
 
-            if (toCheck.all { it.second }) {
+            if (resultLine.any { it }) {
                 return numbers.filter { !it.second }.sumOf { it.first }
             }
-        }
-        return -1
-    }
-}
 
-fun main() {
+            for (j in 0..4) {
+                val toCheck = mutableListOf<Pair<Int, Boolean>>()
+                for (i in numbers.indices step 5) {
+                    toCheck += numbers[i + j]
+                }
+
+                if (toCheck.all { it.second }) {
+                    return numbers.filter { !it.second }.sumOf { it.first }
+                }
+            }
+            return -1
+        }
+    }
+
     fun formatNumbers(input: List<String>): List<Int> =
         input.first()
             .split(",")
