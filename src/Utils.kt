@@ -27,6 +27,12 @@ fun check(part: String, result: Int, excepted: Int) {
     println("check $part: $result $sign $excepted $emoji")
 }
 
+fun check(part: String, result: Long, excepted: Long) {
+    val sign = if (result == excepted) "==" else "!="
+    val emoji = if (result == excepted) "✅" else "⚠️"
+    println("check $part: $result $sign $excepted $emoji")
+}
+
 /**
  * Extension functions
  */
