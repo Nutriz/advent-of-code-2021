@@ -36,6 +36,6 @@ fun check(part: String, result: Long, excepted: Long) {
 /**
  * Extension functions
  */
-fun String.binToInt(): Int {
-    return Integer.parseInt(this,2)
-}
+fun String.binToInt(): Int = Integer.parseInt(this,2)
+
+fun String.overlaps(other: String): Boolean = this.toSet().containsAll(other.toSet())
